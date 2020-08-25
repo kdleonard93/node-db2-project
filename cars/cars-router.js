@@ -12,10 +12,11 @@ res.status(500).json({message: "Can't retrieve data."})
 }
 })
 
-carsRouter.post("/:id", async (req, res) => {
+carsRouter.post("/", async (req, res) => {
+    const car = req.body
 try { 
-    const newCar = await db("cars").insert(req.body)
-    res.status(201).json(newCar)
+    const newCar = await db("cars").insert(car)
+    res.status(201).json(car)
 
 } catch (error) {
     res.status(500).json({message: "Missing data for post."})
